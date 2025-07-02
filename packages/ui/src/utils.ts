@@ -1,8 +1,37 @@
 import { get, post } from "@toruslabs/http-helpers";
-import { LANGUAGE_MAP, LANGUAGE_TYPE, LANGUAGES } from "@web3auth/auth";
+// import { LANGUAGE_MAP, LANGUAGE_TYPE, LANGUAGES } from "@web3auth/auth";
 import { log, LoginMethodConfig, WALLET_ADAPTERS, WalletInitializationError } from "@web3auth/base";
 
 import { AUTH_PROVIDERS, AUTH_PROVIDERS_NAMES } from "./config";
+
+export declare const LANGUAGES: {
+  readonly en: "en";
+  readonly ja: "ja";
+  readonly ko: "ko";
+  readonly de: "de";
+  readonly it: "it";
+  readonly zh: "zh";
+  readonly es: "es";
+  readonly fr: "fr";
+  readonly pt: "pt";
+  readonly nl: "nl";
+  readonly tr: "tr";
+};
+export const LANGUAGES_2 = {
+  en: "en",
+  ja: "ja",
+  ko: "ko",
+  de: "de",
+  it: "it",
+  zh: "zh",
+  es: "es",
+  fr: "fr",
+  pt: "pt",
+  nl: "nl",
+  tr: "tr",
+};
+export type LANGUAGE_TYPE = (typeof LANGUAGES)[keyof typeof LANGUAGES];
+export declare const LANGUAGE_MAP: Record<LANGUAGE_TYPE, string>;
 
 export const getAdapterSocialLogins = (adapterName: string, loginMethodsConfig: LoginMethodConfig = {}): LoginMethodConfig => {
   const finalLoginMethodsConfig: LoginMethodConfig = {};
@@ -90,12 +119,12 @@ interface NavigatorLanguage {
   userLanguage?: string;
 }
 
-export const getUserLanguage = (defaultLanguage: string | undefined): LANGUAGE_TYPE => {
-  let userLanguage = defaultLanguage;
+export const getUserLanguage = (_defaultLanguage: string | undefined): LANGUAGE_TYPE => {
+  let userLanguage = undefined;
   if (!userLanguage) {
     const browserLanguage =
       typeof window !== "undefined" ? (window.navigator as NavigatorLanguage).userLanguage || window.navigator.language || "en-US" : "en-US";
     userLanguage = browserLanguage.split("-")[0];
   }
-  return Object.prototype.hasOwnProperty.call(LANGUAGE_MAP, userLanguage) ? (userLanguage as LANGUAGE_TYPE) : LANGUAGES.en;
+  return Object.prototype.hasOwnProperty.call(LANGUAGES_2, userLanguage) ? (userLanguage as LANGUAGE_TYPE) : LANGUAGES.en;
 };

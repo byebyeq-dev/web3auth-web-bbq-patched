@@ -39,6 +39,7 @@ export default function SocialLogins(props: SocialLoginProps) {
       loginMethodsOrder: [],
       adapter: "",
       uiConfig: {},
+      disableButtons: false,
     },
     handleSocialLoginClick,
   } = props;
@@ -108,6 +109,7 @@ export default function SocialLogins(props: SocialLoginProps) {
                   }
                   className="w3a--w-full"
                   title={name}
+                  disabled={socialLoginsConfig.disableButtons}
                 >
                   {providerIcon}
                   <p className="w3a--ml-2">{t("modal.social.continueCustom", { adapter: name })}</p>

@@ -13,9 +13,10 @@ interface SocialLoginPasswordlessProps {
   isSmsVisible: boolean;
   adapter: string;
   handleSocialLoginClick: (params: { adapter: string; loginParams: { loginProvider: string; login_hint?: string; name: string } }) => void;
+  disableButtons?: boolean;
 }
 export default function SocialLoginPasswordless(props: SocialLoginPasswordlessProps) {
-  const { handleSocialLoginClick, adapter, isPrimaryBtn, isEmailVisible, isSmsVisible } = props;
+  const { handleSocialLoginClick, adapter, isPrimaryBtn, isEmailVisible, isSmsVisible, disableButtons } = props;
 
   const [fieldValue, setFieldValue] = useState<string>("");
   const [countryCode, setCountryCode] = useState<string>("");
@@ -93,9 +94,8 @@ export default function SocialLoginPasswordless(props: SocialLoginPasswordlessPr
             <div className="w3a--absolute w3a--z-20 w3a--flex-col w3a--items-center w3a--hidden w3a--mb-5 w3a--top-4 group-hover:w3a--flex">
               <div className="w3a--w-3 w3a--h-3 w3a--ml-[3px] -w3a--mb-2 w3a--rotate-45 w3a--bg-app-gray-50 dark:w3a--bg-app-gray-600" />
               <div
-                className={`w3a--relative w3a--p-4 w3a--w-[300px] w3a--text-xs w3a--leading-none w3a--text-app-white w3a--rounded-md w3a--bg-app-gray-50 dark:w3a--bg-app-gray-600 w3a--shadow-lg ${
-                  isSmsVisible && !isEmailVisible ? "w3a--left-20" : "w3a--left-8"
-                }`}
+                className={`w3a--relative w3a--p-4 w3a--w-[300px] w3a--text-xs w3a--leading-none w3a--text-app-white w3a--rounded-md w3a--bg-app-gray-50 dark:w3a--bg-app-gray-600 w3a--shadow-lg ${isSmsVisible && !isEmailVisible ? "w3a--left-20" : "w3a--left-8"
+                  }`}
               >
                 <div className="w3a--mb-1 w3a--text-xs w3a--font-medium w3a--text-app-gray-900 dark:w3a--text-app-white">
                   {t("modal.popup.phone-header")}
@@ -123,7 +123,7 @@ export default function SocialLoginPasswordless(props: SocialLoginPasswordlessPr
 
         {isValidInput === false && <div className="w3a-sms-field--error">{t(invalidInputErrorMessage)}</div>}
 
-        <Button variant={isPrimaryBtn ? "primary" : "tertiary"} disabled={fieldValue === ""} className="w3a--w-full" type="submit">
+        <Button variant={isPrimaryBtn ? "primary" : "tertiary"} disabled={fieldValue === "" || disableButtons} className="w3a--w-full" type="submit">
           {t("modal.social.passwordless-cta")}
         </Button>
       </form>

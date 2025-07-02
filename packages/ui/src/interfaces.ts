@@ -72,6 +72,7 @@ export type SocialLoginsConfig = {
   loginMethods: LoginMethodConfig;
   adapter: WALLET_ADAPTER_TYPE;
   uiConfig: Omit<UIConfig, "adapterListener">;
+  disableButtons?: boolean;
 };
 
 export const MODAL_STATUS = {
