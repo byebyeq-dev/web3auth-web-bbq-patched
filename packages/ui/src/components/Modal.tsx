@@ -241,7 +241,7 @@ export default function Modal(props: ModalProps) {
                 <>
                   <Header onClose={closeModal} appLogo={appLogo} appName={appName} />
                   <div className="w3a-modal__content w3ajs-content">
-                    <div style={{ display: "flex", alignItems: "center", marginBottom: "1rem" }}>
+                    <div style={{ display: "flex", alignItems: "center", marginBottom: "1rem", gap: "0.5rem" }}>
                       <input
                         type="checkbox"
                         id="accept-terms"
@@ -249,8 +249,9 @@ export default function Modal(props: ModalProps) {
                         checked={acceptTermsChecked}
                         onChange={() => setAcceptTermsChecked((prev) => !prev)}
                       />
-                      <label htmlFor="accept-terms" style={{ fontSize: "0.95rem" }}>
+                      <label htmlFor="accept-terms" style={{ fontSize: "0.875rem" }}>
                         {t("modal.social.terms_1")} <a className="text-primary underline-offset-4 hover:underline" href="/tos" target="_blank" rel="noopener noreferrer">{t("modal.social.terms_2")}</a>
+                        {" " + t("modal.social.privacy_1")} <a className="text-primary underline-offset-4 hover:underline" href="/privacy" target="_blank" rel="noopener noreferrer">{t("modal.social.privacy_2")}</a>
                       </label>
                     </div>
                     {areSocialLoginsVisible ? (

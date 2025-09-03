@@ -64,6 +64,8 @@
     "social.passwordless-title": "Email or Phone",
     "social.phone": "Phone",
     "social.policy": "We do not store any data related to your social logins.",
+    "social.privacy_1": "and our",
+    "social.privacy_2": "privacy policy",
     "social.sms": "Mobile",
     "social.sms-continue": "Continue with Mobile",
     "social.sms-invalid-number": "Invalid phone number",

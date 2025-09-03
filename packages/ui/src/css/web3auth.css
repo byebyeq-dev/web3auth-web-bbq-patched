@@ -4,7 +4,6 @@
 @tailwind utilities;
 
 @layer utilities {
-
   input[type="number"]::-webkit-inner-spin-button,
   input[type="number"]::-webkit-outer-spin-button {
     @apply w3a--appearance-none;
@@ -13,7 +12,6 @@
 
 /* Keyframes for Shake Animation */
 @keyframes shake {
-
   0%,
   100% {
     transform: translateX(0);
@@ -248,7 +246,7 @@
 }
 
 #w3a-modal .w3a-header__logo img {
-  @apply w3a--w-10 w3a--h-auto;
+  @apply w3a--h-10;
 }
 
 #w3a-modal .w3a-header__title {
@@ -407,8 +405,8 @@
   @apply w3a--flex w3a--gap-x-5 w3a--gap-y-[30px] w3a--p-0 w3a--pb-7 w3a--box-border w3a--flex-wrap;
 }
 
-#w3a-modal .w3a-wallet-connect-qr>canvas,
-#w3a-modal .w3a-wallet-connect-qr>svg {
+#w3a-modal .w3a-wallet-connect-qr > canvas,
+#w3a-modal .w3a-wallet-connect-qr > svg {
   @apply w3a--m-auto;
 }
 
@@ -416,7 +414,7 @@
   @apply w3a--no-underline;
 }
 
-#w3a-modal .w3a-wallet-connect__logo>img {
+#w3a-modal .w3a-wallet-connect__logo > img {
   @apply w3a--mt-0 w3a--mx-auto w3a--mb-4 w3a--w-[115px];
 }
 
@@ -501,13 +499,13 @@
   @apply w3a--inline-flex w3a--items-center w3a--justify-center w3a--h-11;
 }
 
-#w3a-modal button.w3a-button--login:hover>.hover-icon {
+#w3a-modal button.w3a-button--login:hover > .hover-icon {
   display: block;
   transition: display 150ms;
   transition-timing-function: cubic-bezier(0, 0.54, 0.63, 0.99);
 }
 
-#w3a-modal button.w3a-button--login:hover>.image-icon {
+#w3a-modal button.w3a-button--login:hover > .image-icon {
   display: none;
   transition: display 150ms;
   transition-timing-function: cubic-bezier(0, 0.54, 0.63, 0.99);
@@ -593,7 +591,7 @@
   @apply w3a--mt-auto w3a--text-xs w3a--text-[#b7b8bd];
 }
 
-#w3a-modal .w3a-spinner-power>img {
+#w3a-modal .w3a-spinner-power > img {
   @apply w3a--inline w3a--w-auto w3a--h-8;
 }
 
@@ -609,11 +607,13 @@
   border-radius: 100vw;
   background-size: 100% 100%;
   background-position: 0px 0px;
-  background-image: conic-gradient(from 0deg at 50% 50%,
-      var(--app-primary-600) 0%,
-      rgb(229, 231, 235, 0.8) 90deg,
-      rgb(229, 231, 235, 0.8) 270deg,
-      var(--app-primary-600) 360deg);
+  background-image: conic-gradient(
+    from 0deg at 50% 50%,
+    var(--app-primary-600) 0%,
+    rgb(229, 231, 235, 0.8) 90deg,
+    rgb(229, 231, 235, 0.8) 270deg,
+    var(--app-primary-600) 360deg
+  );
 
   -webkit-mask:
     radial-gradient(farthest-side, #000 98%, #0000) center/85% 85% no-repeat,
@@ -627,11 +627,13 @@
 }
 
 .dark #w3a-modal .w3a-spinner__spinner {
-  background-image: conic-gradient(from 0deg at 50% 50%,
-      var(--app-primary-500) 0%,
-      rgb(229, 231, 235, 0.2) 90deg,
-      rgb(229, 231, 235, 0.2) 270deg,
-      var(--app-primary-500) 360deg);
+  background-image: conic-gradient(
+    from 0deg at 50% 50%,
+    var(--app-primary-500) 0%,
+    rgb(229, 231, 235, 0.2) 90deg,
+    rgb(229, 231, 235, 0.2) 270deg,
+    var(--app-primary-500) 360deg
+  );
 }
 
 /* Loader Bridge */
