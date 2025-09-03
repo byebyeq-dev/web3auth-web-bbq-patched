@@ -12,4 +12,5 @@ export interface ButtonSocialProps {
   children?: JSX.Element[] | JSX.Element;
   btnStyle?: string;
   buttonRadius?: ButtonRadiusType;
+  disabled?: boolean;
 }

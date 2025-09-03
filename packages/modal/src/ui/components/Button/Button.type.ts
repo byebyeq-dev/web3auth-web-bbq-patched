@@ -12,4 +12,5 @@ export type ButtonPropsType = ButtonSocialProps | ButtonWalletProps;
 export interface ButtonProps {
   type: ButtonType;
   props: ButtonPropsType;
+  disabled?: boolean;
 }

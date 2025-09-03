@@ -1,7 +1,6 @@
-import toruslabsReact from "@toruslabs/eslint-config-react";
 
 export default [
-  ...toruslabsReact,
+  // ...toruslabsReact,
   {
     ignores: ["./rollup.config.mjs"],
   },

@@ -10,7 +10,7 @@ import { ButtonWalletProps } from "./ButtonWallet.type";
 
 function ButtonWallet(props: ButtonWalletProps) {
   const [t] = useTranslation(undefined, { i18n });
-  const { deviceDetails, button, walletConnectUri, onClick, label, buttonRadius } = props;
+  const { deviceDetails, button, walletConnectUri, onClick, label, buttonRadius, disabled } = props;
 
   const isDark = useContext(ThemedContext);
 
@@ -34,6 +34,7 @@ function ButtonWallet(props: ButtonWalletProps) {
 
   return (
     <button
+      disabled={disabled}
       type="button"
       className={cn(
         `w3a--group w3a--relative w3a--overflow-hidden w3a--flex w3a--w-full w3a--items-center w3a--justify-between w3a--bg-app-gray-50 w3a--p-3 hover:w3a--bg-app-gray-200 
@@ -42,6 +43,7 @@ function ButtonWallet(props: ButtonWalletProps) {
           "w3a--rounded-full": buttonRadius === "pill",
           "w3a--rounded-lg": buttonRadius === "rounded",
           "w3a--rounded-none": buttonRadius === "square",
+          "w3a--grayscale w3a--opacity-50": disabled
         }
       )}
       onClick={handleBtnClick}
@@ -63,16 +65,14 @@ function ButtonWallet(props: ButtonWalletProps) {
       </div>
       {button.hasInjectedWallet && (
         <span
-          className="w3a--absolute w3a--right-4 w3a--top-1/2 w3a--flex w3a--w-auto -w3a--translate-y-1/2 w3a--items-center w3a--rounded-md w3a--bg-app-primary-100 w3a--px-2 w3a--py-1 w3a--text-xs w3a--font-medium w3a--text-app-primary-800 w3a--transition-all w3a--duration-300 group-hover:w3a--translate-x-6 group-hover:w3a--opacity-0 
-        dark:w3a--border dark:w3a--border-app-primary-400 dark:w3a--bg-transparent dark:w3a--text-app-primary-400"
+          className="w3a--absolute w3a--right-4 w3a--top-1/2 w3a--flex w3a--w-auto -w3a--translate-y-1/2 w3a--items-center w3a--rounded-md w3a--bg-app-primary-100 w3a--px-2 w3a--py-1 w3a--text-xs w3a--font-medium w3a--text-app-primary-800 w3a--transition-all w3a--duration-300 group-hover:w3a--translate-x-6 group-hover:w3a--opacity-0 dark:w3a--border dark:w3a--border-app-primary-400 dark:w3a--bg-transparent dark:w3a--text-app-primary-400"
         >
           {t("modal.external.installed")}
         </span>
       )}
       <img
         id="injected-wallet-arrow"
-        className="w3a--absolute w3a--right-4 w3a--top-1/2 -w3a--translate-x-10 -w3a--translate-y-1/2 w3a--opacity-0 w3a--transition-all w3a--duration-300
-          group-hover:w3a--translate-x-0 group-hover:w3a--opacity-100"
+        className="w3a--absolute w3a--right-4 w3a--top-1/2 -w3a--translate-x-10 -w3a--translate-y-1/2 w3a--opacity-0 w3a--transition-all w3a--duration-300 group-hover:w3a--translate-x-0 group-hover:w3a--opacity-100"
         src={getIcons(isDark ? "chevron-right-light" : "chevron-right-dark")}
         alt="arrow"
       />

@@ -85,11 +85,15 @@
     "social.passwordless-title": "Email/Phone",
     "social.phone": "Phone",
     "social.policy": "We do not store any data related to your social logins.",
+    "social.privacy_1": "and our",
+    "social.privacy_2": "privacy policy",
     "social.sign-in": "Sign in",
     "social.sms": "Mobile",
     "social.sms-continue": "Continue with Mobile",
     "social.sms-invalid-number": "Invalid phone number",
     "social.sms-placeholder-text": "E.g.:",
+    "social.terms_1": "I agree to",
+    "social.terms_2": "terms and conditions",
     "social.view-less": "View less",
     "social.view-less-socials": "View less socials",
     "social.view-more": "View more",
@@ -100,6 +104,7 @@
     "error-invalid-origin": "Something went wrong, error code: E002",
     "error-invalid-otp": "Invalid OTP, please try again",
     "error-invalid-params": "Missing or Invalid Parameters.",
+    "error-invalid-test-account": "Invalid test account",
     "error-max-retry-limit-reached": "You have reached the limit for wrong attempts. Please restart the flow again to complete verification.",
     "error-new-link-generated-heading": "New verification link generated",
     "error-no-mail-generated": "No mail generated. Please initiate the passwordless flow first.",
@@ -108,7 +113,6 @@
     "error-plan-limit-reached": "E411. Limit Reached",
     "error-recaptcha-verification-failed": "Captcha verification failed. Please try again.",
     "error-sending-sms-failed": "There was an error sending an sms. Please try again.",
-    "error-invalid-test-account": "Invalid test account",
     "something-wrong-error": "Something went wrong"
   }
 }

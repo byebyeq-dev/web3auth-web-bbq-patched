@@ -7,4 +7,5 @@ export interface ButtonWalletProps {
   deviceDetails?: { platform: platform; os: os; browser: browser };
   walletConnectUri: string | undefined;
   buttonRadius?: ButtonRadiusType;
+  disabled?: boolean;
 }

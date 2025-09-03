@@ -3,7 +3,7 @@ import ButtonSocial, { type ButtonSocialProps } from "./ButtonSocial";
 import ButtonWallet, { type ButtonWalletProps } from "./ButtonWallet";
 
 function Button(props: ButtonProps) {
-  const { type, props: buttonProps } = props;
+  const { type, props: buttonProps, disabled } = props;
 
   const SocialButtonProps = buttonProps as ButtonSocialProps;
   const WalletButtonProps = buttonProps as ButtonWalletProps;
@@ -15,6 +15,7 @@ function Button(props: ButtonProps) {
     <>
       {type === BUTTON_TYPE.SOCIAL && (
         <ButtonSocial
+          disabled={disabled}
           text={text}
           showIcon={showIcon}
           showText={showText}
@@ -30,6 +31,7 @@ function Button(props: ButtonProps) {
       )}
       {type === BUTTON_TYPE.WALLET && (
         <ButtonWallet
+          disabled={disabled}
           label={label}
           walletConnectUri={walletConnectUri}
           onClick={walletOnClick}

@@ -85,6 +85,7 @@ function Login(props: LoginProps) {
   const [showCaptcha, setShowCaptcha] = useState(false);
   const [captchaError, setCaptchaError] = useState<string>("");
   const captchaRef = useRef<HCaptcha>(null);
+  const [acceptTermsChecked, setAcceptTermsChecked] = useState(false);
 
   const handleExpand = () => {
     setExpand((prev) => !prev);
@@ -425,6 +426,7 @@ function Login(props: LoginProps) {
         socialLoginsConfig={socialLoginsConfig}
         handleExpandSocialLogins={handleExpand}
         buttonRadius={buttonRadius}
+        disableButtons={!acceptTermsChecked}
       />
     );
   };
@@ -443,6 +445,7 @@ function Login(props: LoginProps) {
         isDark={isDark}
         buttonRadius={buttonRadius}
         isPasswordLessLoading={isPasswordLessLoading}
+        disableButtons={!acceptTermsChecked}
       />
     );
   };
@@ -454,12 +457,14 @@ function Login(props: LoginProps) {
         {installedExternalWallets.length > 0 &&
           installedExternalWallets.map((wallet) => (
             <button
+              disabled={!acceptTermsChecked}
               key={wallet.name}
               type="button"
               className={cn("w3a--btn !w3a--justify-between w3a--group w3a--relative w3a--overflow-hidden", {
                 "w3a--rounded-full": buttonRadius === "pill",
                 "w3a--rounded-lg": buttonRadius === "rounded",
                 "w3a--rounded-none": buttonRadius === "square",
+                "w3a--grayscale w3a--opacity-50": !acceptTermsChecked
               })}
               onClick={() => handleInstalledWalletClick(wallet)}
             >
@@ -469,8 +474,7 @@ function Login(props: LoginProps) {
               <div className="w3a--absolute w3a--right-4 w3a--top-1/2 w3a--flex w3a--w-auto -w3a--translate-y-1/2 w3a--items-center w3a--gap-x-2 w3a--transition-all w3a--duration-300 group-hover:w3a--translate-x-6 group-hover:w3a--opacity-0">
                 {wallet.hasInjectedWallet && (
                   <span
-                    className="w3a--inline-flex w3a--items-center w3a--rounded-md w3a--bg-app-primary-100 w3a--px-2 w3a--py-1 w3a--text-xs w3a--font-medium w3a--text-app-primary-800 
-                  dark:w3a--border dark:w3a--border-app-primary-400 dark:w3a--bg-transparent dark:w3a--text-app-primary-400"
+                    className="w3a--inline-flex w3a--items-center w3a--rounded-md w3a--bg-app-primary-100 w3a--px-2 w3a--py-1 w3a--text-xs w3a--font-medium w3a--text-app-primary-800 dark:w3a--border dark:w3a--border-app-primary-400 dark:w3a--bg-transparent dark:w3a--text-app-primary-400"
                   >
                     {t("modal.external.installed")}
                   </span>
@@ -490,8 +494,7 @@ function Login(props: LoginProps) {
               </div>
               <img
                 id="injected-wallet-arrow"
-                className="w3a--absolute w3a--right-4 w3a--top-1/2 -w3a--translate-x-10 -w3a--translate-y-1/2 w3a--opacity-0 w3a--transition-all w3a--duration-300
-          group-hover:w3a--translate-x-0 group-hover:w3a--opacity-100"
+                className="w3a--absolute w3a--right-4 w3a--top-1/2 -w3a--translate-x-10 -w3a--translate-y-1/2 w3a--opacity-0 w3a--transition-all w3a--duration-300 group-hover:w3a--translate-x-0 group-hover:w3a--opacity-100"
                 src={getIcons(isDark ? "chevron-right-dark" : "chevron-right-light")}
                 alt="arrow"
               />
@@ -501,11 +504,13 @@ function Login(props: LoginProps) {
         {/* EXTERNAL WALLETS DISCOVERY */}
         {totalExternalWallets > 3 && (
           <button
+            disabled={!acceptTermsChecked}
             type="button"
             className={cn("w3a--btn !w3a--justify-between w3a--group w3a--relative w3a--overflow-hidden", {
               "w3a--rounded-full": buttonRadius === "pill",
               "w3a--rounded-lg": buttonRadius === "rounded",
               "w3a--rounded-none": buttonRadius === "square",
+              "w3a--grayscale w3a--opacity-50": !acceptTermsChecked
             })}
             onClick={handleConnectWallet}
           >
@@ -520,8 +525,7 @@ function Login(props: LoginProps) {
             )}
             <img
               id="external-wallet-arrow"
-              className="w3a--absolute w3a--right-4 w3a--top-1/2 -w3a--translate-x-10 -w3a--translate-y-1/2 w3a--opacity-0 w3a--transition-all w3a--duration-300
-          group-hover:w3a--translate-x-0 group-hover:w3a--opacity-100"
+              className="w3a--absolute w3a--right-4 w3a--top-1/2 -w3a--translate-x-10 -w3a--translate-y-1/2 w3a--opacity-0 w3a--transition-all w3a--duration-300 group-hover:w3a--translate-x-0 group-hover:w3a--opacity-100"
               src={getIcons(isDark ? "chevron-right-dark" : "chevron-right-light")}
               alt="arrow"
             />
@@ -620,6 +624,19 @@ function Login(props: LoginProps) {
         >
           {t("modal.social.sign-in")}
         </p>
+        <div style={{ display: "flex", alignItems: "center", marginBottom: "1rem" }}>
+          <input
+            type="checkbox"
+            id="accept-terms"
+            style={{ marginRight: "0.5rem" }}
+            checked={acceptTermsChecked}
+            onChange={() => setAcceptTermsChecked((prev) => !prev)}
+          />
+          <label htmlFor="accept-terms" style={{ fontSize: "0.875rem" }}>
+            {t("modal.social.terms_1")} <a className="w3a--text-app-primary-800 dark:w3a--text-app-primary-400 w3a--underline-offset-4 hover:w3a--underline" href="/tos" target="_blank" rel="noopener noreferrer">{t("modal.social.terms_2")}</a>
+            {" " + t("modal.social.privacy_1")} <a className="w3a--text-app-primary-800 dark:w3a--text-app-primary-400 w3a--underline-offset-4 hover:w3a--underline" href="/privacy" target="_blank" rel="noopener noreferrer">{t("modal.social.privacy_2")}</a>
+          </label>
+        </div>
       </div>
 
       <HCaptcha

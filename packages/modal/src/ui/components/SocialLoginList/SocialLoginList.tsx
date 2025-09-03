@@ -28,7 +28,7 @@ function getProviderIcon(method: string, isDark: boolean, extension: string) {
 }
 
 function SocialLoginList(props: SocialLoginListProps) {
-  const { visibleRow, otherRow, isDark, canShowMore, handleSocialLoginClick, handleExpandSocialLogins, buttonRadius } = props;
+  const { visibleRow, otherRow, isDark, canShowMore, handleSocialLoginClick, handleExpandSocialLogins, buttonRadius, disableButtons } = props;
 
   const getGridRowFromVisibleLogin = () => {
     if (visibleRow.length === 1) {
@@ -51,6 +51,7 @@ function SocialLoginList(props: SocialLoginListProps) {
             .map((row) => (
               <LoginHint key={row.method} content={"Last Login"} isDark={isDark} hideHint={true}>
                 <Button
+                  disabled={disableButtons}
                   type={BUTTON_TYPE.SOCIAL}
                   key={row.method}
                   props={{
@@ -68,6 +69,7 @@ function SocialLoginList(props: SocialLoginListProps) {
             ))}
           {canShowMore && visibleRow.length > 4 && (
             <Button
+              disabled={disableButtons}
               type={BUTTON_TYPE.SOCIAL}
               props={{
                 showIcon: false,
@@ -94,6 +96,7 @@ function SocialLoginList(props: SocialLoginListProps) {
         {otherRow.map((row) => (
           <div className="w3a--h-11 w3a--w-full" key={row.method}>
             <Button
+              disabled={disableButtons}
               type={BUTTON_TYPE.SOCIAL}
               props={{
                 method: row.method,
@@ -108,8 +111,7 @@ function SocialLoginList(props: SocialLoginListProps) {
                     <p className="w3a--text-sm w3a--font-normal w3a--text-app-gray-900 dark:w3a--text-app-white">{row.name}</p>
                     <img
                       id="login-arrow"
-                      className="w3a--absolute w3a--right-4 w3a--top-1/2 -w3a--translate-x-10 -w3a--translate-y-1/2 w3a--opacity-0 w3a--transition-all w3a--duration-300
-          group-hover:w3a--translate-x-0 group-hover:w3a--opacity-100"
+                      className="w3a--absolute w3a--right-4 w3a--top-1/2 -w3a--translate-x-10 -w3a--translate-y-1/2 w3a--opacity-0 w3a--transition-all w3a--duration-300 group-hover:w3a--translate-x-0 group-hover:w3a--opacity-100"
                       src={getIcons(isDark ? "chevron-right-dark" : "chevron-right-light")}
                       alt="arrow"
                     />

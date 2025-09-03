@@ -2,7 +2,7 @@
 
 import "./css/index.css";
 
-import { applyWhiteLabelTheme, LANGUAGES, SafeEventEmitter } from "@web3auth/auth";
+import { applyWhiteLabelTheme, SafeEventEmitter } from "@web3auth/auth";
 import {
   type Analytics,
   ANALYTICS_EVENTS,
@@ -48,7 +48,7 @@ import {
   UIConfig,
 } from "./interfaces";
 import i18n from "./localeImport";
-import { getUserLanguage } from "./utils";
+import { getUserLanguage, LANGUAGES_2 as LANGUAGES } from "./utils";
 
 function createWrapperForModal(parentZIndex: string) {
   const existingWrapper = document.getElementById("w3a-parent-container");
@@ -96,7 +96,7 @@ export class LoginModal {
     if (!uiConfig.appName) this.uiConfig.appName = "Web3Auth";
     if (!uiConfig.loginGridCol) this.uiConfig.loginGridCol = 3;
     if (!uiConfig.primaryButton) this.uiConfig.primaryButton = "socialLogin";
-    if (!uiConfig.defaultLanguage) this.uiConfig.defaultLanguage = getUserLanguage(uiConfig.defaultLanguage);
+    if (!uiConfig.defaultLanguage) this.uiConfig.defaultLanguage = getUserLanguage(uiConfig.defaultLanguage) as any;
     if (!uiConfig.widgetType) this.uiConfig.widgetType = WIDGET_TYPE.MODAL;
 
     if (uiConfig.widgetType === WIDGET_TYPE.EMBED && !uiConfig.targetId) {
@@ -128,8 +128,7 @@ export class LoginModal {
 
   initModal = async (): Promise<void> => {
     const darkState = { isDark: this.isDark };
-
-    const useLang = this.uiConfig.defaultLanguage || LANGUAGES.en;
+    const useLang = getUserLanguage(this.uiConfig.defaultLanguage) || LANGUAGES.en;
 
     // Load new language resource
 
@@ -171,6 +170,15 @@ export class LoginModal {
         });
     } else if (useLang === LANGUAGES.es) {
       import(`./i18n/spanish.json`)
+        .then((messages) => {
+          i18n.addResourceBundle(useLang as string, "translation", messages.default);
+          return i18n.changeLanguage(useLang);
+        })
+        .catch((error) => {
+          log.error(error);
+        });
+    } else if (useLang === LANGUAGES.it) {
+      import(`./i18n/italian.json`)
         .then((messages) => {
           i18n.addResourceBundle(useLang as string, "translation", messages.default);
           return i18n.changeLanguage(useLang);

@@ -15,15 +15,17 @@ function getProviderIcon(method: string, isDark: boolean, isPrimaryBtn: boolean)
 }
 
 function SocialLoginButton(props: ButtonSocialProps) {
-  const { text, showIcon, showText, method, isDark, isPrimaryBtn, onClick, children, btnStyle, buttonRadius = "pill" } = props;
+  const { text, showIcon, showText, method, isDark, isPrimaryBtn, onClick, children, btnStyle, buttonRadius = "pill", disabled } = props;
   return (
     <button
+      disabled={disabled}
       type="button"
       onClick={(e) => onClick && onClick(e)}
       className={cn("w3a--btn", btnStyle, {
         "w3a--rounded-full": buttonRadius === "pill",
         "w3a--rounded-lg": buttonRadius === "rounded",
         "w3a--rounded-none": buttonRadius === "square",
+        "w3a--grayscale w3a--opacity-50": disabled
       })}
     >
       {showIcon && getProviderIcon(method, isDark, isPrimaryBtn)}

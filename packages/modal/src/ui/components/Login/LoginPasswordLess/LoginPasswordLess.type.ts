@@ -11,4 +11,5 @@ export interface LoginPasswordLessProps {
   buttonRadius?: ButtonRadiusType;
   handleFormSubmit: (loginHint: string) => void;
   setIsPasswordLessCtaClicked: (isPasswordLessCtaClicked: boolean) => void;
+  disableButtons?: boolean;
 }

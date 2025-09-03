@@ -9,4 +9,5 @@ export interface SocialLoginListProps {
   handleSocialLoginClick: (params: SocialLoginEventType) => void;
   handleExpandSocialLogins: () => void;
   buttonRadius?: ButtonRadiusType;
+  disableButtons?: boolean;
 }
